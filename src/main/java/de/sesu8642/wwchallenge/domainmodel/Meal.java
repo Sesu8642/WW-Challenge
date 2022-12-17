@@ -3,6 +3,8 @@ package de.sesu8642.wwchallenge.domainmodel;
 import java.util.Date;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,6 +26,7 @@ public class Meal {
 	private String name;
 
 	/** date this meal was invented */
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date invented;
 
 	@Override

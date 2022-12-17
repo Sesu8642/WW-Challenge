@@ -35,12 +35,12 @@ public class Child {
 	 * the parent of this child (limitation of the model: each child only has a
 	 * single parent)
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent_id")
 	private Person parent;
 
 	/** list of favorite meals of the child; order: most liked first */
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "child_favorite_meals", joinColumns = { @JoinColumn(name = "child_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "meal_id") })
 	@OrderColumn

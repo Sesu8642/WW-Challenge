@@ -1,5 +1,7 @@
 package de.sesu8642.wwchallenge.domainmodel;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +35,7 @@ public class House {
 	 * the person living in this house; bidirectional because we want fast access to
 	 * the house given only the person's id
 	 */
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "person_id")
 	private Person resident;

@@ -1,5 +1,7 @@
 package de.sesu8642.wwchallenge.domainmodel;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ public class Person {
 	 * for the given task but it seems reasonable to have easy access to a person's
 	 * address
 	 */
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "house_id")
 	private House house;
