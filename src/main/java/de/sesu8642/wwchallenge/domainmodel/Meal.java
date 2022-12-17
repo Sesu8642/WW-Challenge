@@ -26,8 +26,17 @@ public class Meal {
 	private String name;
 
 	/** date this meal was invented */
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date invented;
+
+	public Meal() {
+		// default constructor for Hibernate
+	}
+
+	public Meal(String name, Date invented) {
+		this.name = name;
+		this.invented = invented;
+	}
 
 	@Override
 	public int hashCode() {

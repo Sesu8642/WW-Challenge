@@ -46,6 +46,17 @@ public class Child {
 	@OrderColumn
 	private List<Meal> favoriteMeals;
 
+	public Child() {
+		// default constructor for Hibernate
+	}
+	
+	public Child(String name, Integer age, Person parent, List<Meal> favoriteMeals) {
+		this.name = name;
+		this.age = age;
+		this.parent = parent;
+		this.favoriteMeals = favoriteMeals;
+	}
+
 	public long getId() {
 		return id;
 	}

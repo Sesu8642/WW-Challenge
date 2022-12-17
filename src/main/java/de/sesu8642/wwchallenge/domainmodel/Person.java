@@ -38,6 +38,16 @@ public class Person {
 	@JoinColumn(name = "house_id")
 	private House house;
 
+	public Person() {
+		// default constructor for Hibernate
+	}
+
+	public Person(String name, Integer age, House house) {
+		this.name = name;
+		this.age = age;
+		this.house = house;
+	}
+
 	public long getId() {
 		return id;
 	}

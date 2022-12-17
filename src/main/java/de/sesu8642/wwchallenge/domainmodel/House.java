@@ -40,6 +40,17 @@ public class House {
 	@JoinColumn(name = "person_id")
 	private Person resident;
 
+	public House() {
+		// default constructor for Hibernate
+	}
+
+	public House(String address, String zipCode, HouseType type, Person resident) {
+		this.address = address;
+		this.zipCode = zipCode;
+		this.type = type;
+		this.resident = resident;
+	}
+
 	public long getId() {
 		return id;
 	}
