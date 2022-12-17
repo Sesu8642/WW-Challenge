@@ -42,4 +42,20 @@ public class ChildRestController {
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
+	/**
+	 * Exposes {@link ChildService#findChildColorById} via the RESTful API.
+	 * 
+	 * @param childId id of the child whose color to get
+	 * @return {@link ChildColorProjection} containing either the the hair color if
+	 *         the child is a daughter or the bike color if the child is a son
+	 * 
+	 * @throws {@link ResponseStatusException} with status code 404 if the result is
+	 *                null
+	 */
+	@GetMapping("/{childId}/color")
+	public IColorInfo getChildColorById(@PathVariable long childId) {
+		return childService.findChildColorById(childId)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+
 }

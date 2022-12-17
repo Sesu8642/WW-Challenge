@@ -16,4 +16,13 @@ public interface IChildService {
 	 */
 	Optional<ChildInfoProjection> findChildInfoById(long childId);
 
+	/**
+	 * Finds color information about a child with the given ID.
+	 * 
+	 * @param childId ID of the child to find information about
+	 * @return Optional containing the info as a {@link IColorInfo} or empty optional if the child was not
+	 *         found
+	 */
+	Optional<IColorInfo> findChildColorById(long childId);
+
 }

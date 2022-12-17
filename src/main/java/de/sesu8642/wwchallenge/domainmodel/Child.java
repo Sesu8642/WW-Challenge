@@ -16,7 +16,7 @@ import jakarta.persistence.OrderColumn;
  * Descendant of a {@link Person}.
  */
 @Entity
-public class Child {
+public abstract class Child {
 
 	/**
 	 * id
