@@ -35,12 +35,14 @@ public class Child {
 	 * the parent of this child (limitation of the model: each child only has a
 	 * single parent)
 	 */
+	// can be optimized by using LAZY once jackson-datatype-hibernate6 is released
+	// see https://github.com/FasterXML/jackson-datatype-hibernate/blob/master/release-notes/VERSION
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent_id")
 	private Person parent;
 
 	/** list of favorite meals of the child; order: most liked first */
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "child_favorite_meals", joinColumns = { @JoinColumn(name = "child_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "meal_id") })
 	@OrderColumn
