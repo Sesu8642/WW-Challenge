@@ -3,8 +3,12 @@ package de.sesu8642.wwchallenge.domainmodel;
 import java.util.Date;
 import java.util.Objects;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,6 +17,8 @@ import jakarta.persistence.Id;
  * A type of dish.
  */
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Meal {
 
 	/**

@@ -2,9 +2,11 @@ package de.sesu8642.wwchallenge.domainmodel;
 
 import java.util.List;
 
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
 
 @Entity
+@Cacheable
 public class Son extends Child {
 
 	/** color of this child's bicycle */

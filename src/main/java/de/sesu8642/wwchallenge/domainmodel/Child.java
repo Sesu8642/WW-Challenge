@@ -2,6 +2,10 @@ package de.sesu8642.wwchallenge.domainmodel;
 
 import java.util.List;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +20,8 @@ import jakarta.persistence.OrderColumn;
  * Descendant of a {@link Person}.
  */
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public abstract class Child {
 
 	/**
@@ -46,6 +52,7 @@ public abstract class Child {
 	@JoinTable(name = "child_favorite_meals", joinColumns = { @JoinColumn(name = "child_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "meal_id") })
 	@OrderColumn
+	@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 	private List<Meal> favoriteMeals;
 
 	public Child() {

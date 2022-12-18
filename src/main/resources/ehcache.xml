@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ehcache.org/v3" xmlns:jsr107="http://www.ehcache.org/v3/jsr107"
+	xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd
+						http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext.xsd">
+	<!-- The optimal cache settings heavily depend on the deployment and usage which I have no information about. 
+	The only information given is that 70% of requests are about houses and 30% about child info. The next part
+	of the task mentions 300,000,000 entries about children. I tried to get the ratio of cache between the use cases
+	right. The exact ttl, size and possibly disk cache would need to be configured depending on the deployment and usage. -->
+	<service>
+		<jsr107:defaults enable-management="true" enable-statistics="true" default-template="default" />
+	</service>
+	<cache-template name="default">
+		<expiry>
+			<ttl unit="seconds">300</ttl>
+		</expiry>
+		<heap>1024</heap>
+	</cache-template>
+	<!-- Child info classes use the L2 cache -->
+	<cache alias="Child" uses-template="default" />
+	<cache alias="Person" uses-template="default" />
+	<cache alias="Meal" uses-template="default" />
+	<!-- House uses the query cache -->
+	<cache alias="default-query-results-region">
+		<expiry>
+			<ttl unit="seconds">300</ttl>
+		</expiry>
+		<!-- house contains much less information than child info and doesn't really need 70% of the available cache -->
+		<heap>5120</heap>
+	</cache>
+</config>
